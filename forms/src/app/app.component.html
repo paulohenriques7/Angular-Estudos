@@ -1,0 +1,68 @@
+<div class="flex">
+  <mat-card class="card-form">
+    <mat-card-title>Cadastro de Usuários</mat-card-title>
+    <mat-card-subtitle>Subtitulo</mat-card-subtitle>
+    <mat-card-content>
+      <!-- 
+        -> Informar que o formulário será validade pelo Template Driven Forms
+        -> ngForm informa que o furmulário utilizará o método de validação Template Driver Forms
+       -->
+      <form action="#" #userForm="ngForm" (ngSubmit)="enviarForm()">
+        <mat-form-field appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input type="text" 
+          matInput 
+          [(ngModel)]="dadosUsuario.nome" 
+          name="nome"
+          required
+          minlength="3"
+          #inputNome="ngModel"
+          >
+          <mat-error  *ngIf="inputNome.touched && inputNome.invalid">
+            <mat-error *ngIf="inputNome.errors?.['minlength']">Digite no minímo 3 caracteres</mat-error>
+            <mat-error *ngIf="inputNome.errors?.['required']">Este campo é obrigatório</mat-error>
+          </mat-error >
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Sobrenome</mat-label>
+          <input type="text" 
+          matInput 
+          [(ngModel)]="dadosUsuario.sobrenome" 
+          name="sobrenome"
+          required
+          minlength="3"
+          #inputSobrenome="ngModel"
+          >
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>E-mail</mat-label>
+          <input type="email" 
+          matInput [(ngModel)]="dadosUsuario.email" 
+          name="email"
+          required
+          minlength="3"
+          #inputEmail="ngModel"
+          email
+          >
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Senha</mat-label>
+          <input type="password" 
+          matInput [(ngModel)]="dadosUsuario.senha" 
+          name="senha"
+          required
+          minlength="3"
+          #inputSenha="ngModel" 
+          >
+        </mat-form-field>
+        <button type="submit" 
+        mat-raised-button 
+        color="primary"
+        [disabled]="userForm.invalid"
+        >Cadastrar</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<app-reactive></app-reactive>
